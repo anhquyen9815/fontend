@@ -20,6 +20,7 @@ export default defineConfig({
       '@svg': path.resolve(__dirname, './public'),
     },
   },
+
   server: {
     // host: '0.0.0.0', // Cho phép truy cập từ thiết bị khác (điện thoại)
     // port: 5173,
@@ -36,5 +37,6 @@ export default defineConfig({
         secure: false, // Cho phép SSL tự ký
       },
     },
+   
   },
 })
