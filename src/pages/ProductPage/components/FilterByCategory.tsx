@@ -48,7 +48,7 @@ const FilterByCategory: React.FC<ProductFilterHeaderProps> = ({ categoryId, hand
   }, [])
 
   return (
-    <Box sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{ width: '100%', mb: 2,  }}>
       <Typography variant="subtitle1" fontWeight={700}>
         Thương hiệu
       </Typography>
@@ -65,26 +65,43 @@ const FilterByCategory: React.FC<ProductFilterHeaderProps> = ({ categoryId, hand
         {filteredBrandCategories?.items.map((item: BrandCategory) => (
           <Button
             key={item.id}
-            variant={brandSelect == item.brandId ? "contained" : "outlined"}
+            // variant={brandSelect == item.brandId ? "contained" : "outlined"}
+            variant={"outlined"}
             size="small"
             sx={{
               borderRadius: 2,
               textTransform: "uppercase",
               fontWeight: 600,
+              borderWidth: brandSelect == item.brandId ? 2 : 1,
+              boxShadow: brandSelect == item.brandId ? 2 : 0,
               borderColor:
                 brandSelect == item.brandId ? theme.palette.primary.main : "divider",
               color: brandSelect == item.brandId ? "white" : "text.primary",
-              bgcolor: brandSelect == item.brandId ? theme.palette.primary.main : "transparent",
+              // bgcolor: brandSelect == item.brandId ? theme.palette.primary.main : "transparent",
+              bgcolor: brandSelect == item.brandId ? 'rgba(255,0,0,0.05)' : "transparent",
+              // bgcolor: 'transparent', rgba(255,0,0,0.05)
               "&:hover": {
                 bgcolor:
                   brandSelect == item.brandId
-                    ? theme.palette.primary.dark
+                    // ? theme.palette.primary.dark
+                    ? theme.palette.action.hover
                     : theme.palette.action.hover,
               },
             }}
             onClick={() => handleSelectBrand(item.brandId)}
           >
-            {item.brandName}
+            {/* {item.brandName} */}
+
+            {item.brandLogo ? (
+              <img
+                src={item.brandLogo}
+                alt={item.brandName}
+                style={{ width: '68px', height: '30px', objectFit: 'contain' }} // Điều chỉnh kích thước
+              />
+            )
+              : item.brandName
+              }
+
           </Button>
         ))}
       </Stack>

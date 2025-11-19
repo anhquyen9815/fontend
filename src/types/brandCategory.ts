@@ -4,6 +4,7 @@ export interface BrandCategory {
   categoryId: number;
   brandId: number;
   brandName?: string;
+  brandLogo?: string;
   categoryName?: string;
 }
 
