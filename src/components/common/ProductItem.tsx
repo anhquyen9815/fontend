@@ -16,7 +16,7 @@ import type { Product } from '@/types/product'
 
 
 
-const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
+const ProductItem: React.FC<{ product: Product, index: number }> = ({ product, index }) => {
     const navigate = useNavigate();
     const handleClick = (product: Product) => {
         navigate(`/${product.category?.slug}/${product.slug}`, {
@@ -45,13 +45,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
                     component="img"
                     image={product.image}
                     alt={product.name}
-                    // sx={{
-                    //     objectFit: "cover",
-                    //     width: '80%',
-                    //     display: "block",     // bắt buộc để mx auto có hiệu lực
-                    //     mx: "auto",
-                    //     height: 'auto',
-                    // }}
+                    loading={index < 10 ? 'eager' : 'lazy'}
                     sx={{
                         width: '100%',        // chiếm full width card
                         height: 'auto',       // chiều cao theo tỉ lệ ảnh
@@ -61,7 +55,6 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
                         backgroundColor: '#fff', // nếu muốn nền trắng để thấy khoảng trống
                         px: 1
                     }}
-
                 />
                 {/* {product.promoText && (
                                 <Chip

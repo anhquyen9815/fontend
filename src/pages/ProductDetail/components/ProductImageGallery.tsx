@@ -160,6 +160,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                             component="img"
                             src={src}
                             alt={`thumb-${i}`}
+                            loading={'lazy'}
                             sx={{
                                 width: "90%",          // ảnh nhỏ hơn ô, nằm giữa
                                 height: "90%",

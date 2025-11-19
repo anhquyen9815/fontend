@@ -48,7 +48,7 @@ const FilterByCategory: React.FC<ProductFilterHeaderProps> = ({ categoryId, hand
   }, [])
 
   return (
-    <Box sx={{ width: '100%', mb: 2,  }}>
+    <Box sx={{ width: '100%', mb: 1,  }}>
       <Typography variant="subtitle1" fontWeight={700}>
         Thương hiệu
       </Typography>

@@ -30,7 +30,7 @@ const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ items }) => {
     });
   };
   return (
-    <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-start", mb: 2 }}>
+    <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-start", mb: 1 }}>
       <Breadcrumbs
         separator={
           <NavigateNextIcon fontSize="small" sx={{ color: "text.secondary"}} />

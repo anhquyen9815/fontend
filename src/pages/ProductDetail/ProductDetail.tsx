@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, useTheme, Breadcrumbs, Box, Stack, useMediaQuery } from '@mui/material';
+import {  useTheme,  Box, Stack, useMediaQuery } from '@mui/material';
 import ProductImageGallery from './components/ProductImageGallery';
 import { useLocation } from "react-router-dom";
 import type { Product } from '@/types/product'

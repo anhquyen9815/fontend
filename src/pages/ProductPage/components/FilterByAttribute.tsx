@@ -74,12 +74,12 @@ const FilterByAttribute: React.FC<ProductFilterHeaderProps> = ({ categoryId, han
   }
 
   return (
-    <Box sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{ width: '100%', mb: 0 }}>
       <Typography variant="subtitle1" fontWeight={700}>
         Chọn tiêu chí
       </Typography>
 
-      <Stack direction="row" spacing={1.5} mt={1.5} flexWrap="wrap" useFlexGap>
+      <Stack direction="row" spacing={1.5} mt={1} flexWrap="wrap" useFlexGap>
         {filteredAttributeDefinitions?.items.map(item => (
           <MenuDropsDownAttribute attributeDefinitionId={item.id} onSelect={handleSelect(item.name)} title={item.displayName} />
         ))}

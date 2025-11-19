@@ -15,7 +15,7 @@ const ProductPage: React.FC = () => {
     const { categoryId, categoryName } = location.state as { categoryId: number, categoryName: string } || {};
     const { getFilteredProducts, filteredProducts } = useProductHooks();
     const [page, setPage] = useState<number>(1)
-    const [optionFilter, setOptionFilter] = useState<OptionFilterProduct>({ page, size: 20, categoryId });
+    const [optionFilter, setOptionFilter] = useState<OptionFilterProduct>({ page, size: 15, categoryId });
     const totalProduct = filteredProducts?.total || 0
     const lengthProduct = filteredProducts?.items.length || 0
     const items = [
@@ -71,43 +71,44 @@ const ProductPage: React.FC = () => {
                 }}
             >
                 {filteredProducts?.items
-                    .map((p: Product) => (
-                        <ProductItem product={p} />
+                    .map((p: Product, index: number) => (
+                        <ProductItem product={p} index={index} />
                     ))}
-                {totalProduct > lengthProduct
-                    ? <Button
-                        onClick={() => {
-                            const newPage = page + 1
-                            setPage(newPage)
-                            setOptionFilter({ ...optionFilter, page: newPage })
-                        }}
-                        variant="outlined"
-                        endIcon={<KeyboardArrowDownIcon />}
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            mx: "auto",                 // 👈 căn giữa theo chiều ngang
-                            mt: 3,                      // khoảng cách phía trên
-                            px: 4,                      // padding ngang
-                            // py: 1,                    // padding dọc
-                            borderRadius: "10px",     // 👈 bo tròn full pill
-                            textTransform: "none",      // bỏ viết hoa chữ
-                            fontWeight: 600,
-                            fontSize: "1rem",
-                            boxShadow: "0px 4px 8px rgba(0,0,0,0.1)", // 👈 bóng nhẹ
-                            backgroundColor: "#fff",
-                            color: "#000",
-                            "&:hover": {
-                                backgroundColor: "#f5f5f5",
-                                boxShadow: "0px 6px 12px rgba(0,0,0,0.15)",
-                            },
-                        }}
-                    >
-                        Xem thêm {totalProduct - lengthProduct} sản phẩm
-                    </Button>
-                    : null}
+
             </Box>
+            {totalProduct > lengthProduct
+                ? <Button
+                    onClick={() => {
+                        const newPage = page + 1
+                        setPage(newPage)
+                        setOptionFilter({ ...optionFilter, page: newPage })
+                    }}
+                    variant="outlined"
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        mx: "auto",                 // 👈 căn giữa theo chiều ngang
+                        mt: 3,                      // khoảng cách phía trên
+                        px: 4,                      // padding ngang
+                        // py: 1,                    // padding dọc
+                        borderRadius: "10px",     // 👈 bo tròn full pill
+                        textTransform: "none",      // bỏ viết hoa chữ
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                        boxShadow: "0px 4px 8px rgba(0,0,0,0.1)", // 👈 bóng nhẹ
+                        backgroundColor: "#fff",
+                        color: "#000",
+                        "&:hover": {
+                            backgroundColor: "#f5f5f5",
+                            boxShadow: "0px 6px 12px rgba(0,0,0,0.15)",
+                        },
+                    }}
+                >
+                    Xem thêm {totalProduct - lengthProduct} sản phẩm
+                </Button>
+                : null}
 
         </Box>
     );

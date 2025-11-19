@@ -28,7 +28,7 @@ const HomeScreen: React.FC = () => {
                 alignItems: 'center',
                 display: 'flex',
                 flexDirection: 'column',
-                maxWidth: '1200px'
+                maxWidth: '1000px'
                 // bgcolor:'blue'
             }}
         >
@@ -38,6 +38,7 @@ const HomeScreen: React.FC = () => {
                 <PhoneList
                     title={cate.name}
                     categoryId={cate.id}
+                    categoryName={cate.name}
                 />
             ))}
 

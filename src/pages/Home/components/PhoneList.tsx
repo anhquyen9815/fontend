@@ -10,14 +10,17 @@ import { useNavigate } from "react-router-dom";
 import type { Product } from '@/types/product'
 import ProductItem from "@/components/common/ProductItem";
 import { SCREEN_PATH } from "@/constants/screenPaths";
+import SaveIcon from "@mui/icons-material/ArrowCircleRight";
+import type { Category } from "@/types/category";
 
 interface PhoneListProps {
     title?: string;
     categoryId: number;
+    categoryName: string
 }
 
 
-const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", categoryId }) => {
+const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", categoryId, categoryName }) => {
     const navigate = useNavigate();
     const [selectedBrand, setSelectedBrand] = useState<number>(0);
     const { getFilteredProducts, filteredProducts } = useProductHooks();
@@ -36,7 +39,7 @@ const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", catego
 
     useEffect(() => {
         if (selectedBrand) {
-            getFilteredProducts({ page: 1, size: 50, categoryId, brandId: selectedBrand })
+            getFilteredProducts({ page: 1, size: 5, categoryId, brandId: selectedBrand })
         }
     }, [selectedBrand])
 
@@ -49,6 +52,12 @@ const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", catego
             state: { categoryId, categoryName: title }, // 👈 truyền props qua state
         });
     };
+
+     const handleClickAll = () => {
+                navigate(SCREEN_PATH.PRODUCTPAGE, {
+                    state: {categoryId, categoryName}, // 👈 truyền props qua state
+                });
+            };
 
     return (
         <Box
@@ -131,7 +140,19 @@ const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", catego
                     },
                 }}
             >
-                {filteredProducts?.items.map((p: Product) => (<ProductItem product={p} />))}
+                {filteredProducts?.items.map((p: Product, index: number) => (<ProductItem product={p} index={index} />))}
+                <Box sx={{ display: 'flex', alignItems: 'center', px: '10px' }}>
+                    <Button
+                        sx={{ px: '10px', py: '5px', width: '100px' }}
+                        onClick={handleClickAll}
+                        variant="contained"
+                        color="primary"
+                        endIcon={<SaveIcon />}
+                        size='medium'>
+                        ...
+                    </Button>
+                </Box>
+
             </Box>
         </Box>
     );

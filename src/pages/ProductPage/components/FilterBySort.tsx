@@ -35,7 +35,7 @@ const FilterBySort: React.FC<ProductFilterHeaderProps> = ({  handleFilter, optio
   };
 
   return (
-    <Box sx={{ width: '100%', mb:2 }}>
+    <Box sx={{ width: '100%', mb:1 }}>
         <Typography variant="subtitle1" fontWeight={700} >
           Sắp xếp theo
         </Typography>
@@ -45,7 +45,7 @@ const FilterBySort: React.FC<ProductFilterHeaderProps> = ({  handleFilter, optio
           value={sort}
           onChange={handleSortChange}
           sx={{
-            mt: 1.5,
+            mt: 1,
             gap: 1,
             flexWrap: "wrap",
             "& .MuiToggleButton-root": {

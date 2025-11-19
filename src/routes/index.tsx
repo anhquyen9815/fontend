@@ -30,7 +30,6 @@ const AppRoutes: React.FC = () => (
             <Route path={SCREEN_PATH.ADMIN} element={<AdminScreen />} />
             {/* <Route path={SCREEN_PATH.PRODUCTDETAIL} element={<ProductDetail />} /> */}
             <Route path="/:categorySlug/:productSlug" element={<ProductDetail />} />
-            //
             <Route path={SCREEN_PATH.PRODUCTPAGE} element={<ProductPage />} />
             <Route path={SCREEN_PATH.ATTRIBUTEADD} element={<AddAttributeDefinitionForm />} />
 
@@ -42,9 +41,6 @@ const AppRoutes: React.FC = () => (
         </Route>
 
         <Route path={SCREEN_PATH.LOGIN} element={<LoginPageScreen />} />
-
-
-
 
         {/* Route ngoài (ví dụ: Login không có Header) */}
 
