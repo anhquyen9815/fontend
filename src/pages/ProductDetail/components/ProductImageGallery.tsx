@@ -15,7 +15,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
     avatar
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const size = { xs: 40, sm: 60, md: 70 }
+    const size = { xs: 40, sm: 50, md: 60 }
 
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -30,12 +30,13 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
             sx={{
                 position: "relative",
                 width: "100%",
+                // maxWidth: '720px',
                 // bgcolor: "background.paper",
-                // bgcolor: "red",
                 borderRadius: 2,
                 overflow: "hidden",
                 boxShadow: 3,
-                py: 1,
+                pt: 6,
+                pb: 3,
 
             }}
         >
@@ -47,11 +48,13 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                     alt={`image-${currentIndex}`}
                     sx={{
                         width: "80%",
+                        // maxWidth: '700px',
+                        // maxHeight: '467px',
                         objectFit: 'contain',
                         borderRadius: 2,
                         mx: 'auto',
                         mb: 2,
-                        height: { xs: 250, md: 'auto'},
+                        height: { xs: 250, md: 'auto' },
 
                     }}
                 />
@@ -119,8 +122,12 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                 justifyContent="center"
                 sx={{
                     p: 1,
-                    overflowX: "auto",
+                    mx: '2%',
+                    margin: "10 auto",
+                    mt: 5,
                     "&::-webkit-scrollbar": { display: "none" },
+                    flexWrap: "wrap", // 👈 thêm dòng này
+                    overflowX: "hidden", // không cần scroll
                 }}
             >
                 {/* // onClick={() => setCurrentIndex(index)} */}
@@ -130,7 +137,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                         component="li"
                         onClick={() => setCurrentIndex(i)}
                         sx={{
-                            flex: "0 0 auto",
+                            // flex: "0 0 auto",
                             width: { xs: size.xs, sm: size.sm, md: size.md },
                             height: { xs: size.xs, sm: size.sm, md: size.md },
                             borderRadius: 2,                // bo góc nhẹ

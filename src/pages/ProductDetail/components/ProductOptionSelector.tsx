@@ -51,7 +51,7 @@ const ProductOptionSelector: React.FC<ProductOptionSelectorProps> = ({
     );
 
     return (
-        <Paper sx={{ p: 3, borderRadius: 3, width: "100%", maxWidth: 600 }}>
+        <Paper sx={{ p: 3, borderRadius: 3, width: "100%", maxWidth: 500 }}>
             {/* Tên + Đánh giá */}
             <Typography variant="h6" fontWeight={700}>
                 {productDetail.name}

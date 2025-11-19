@@ -2,11 +2,20 @@ import React from "react";
 import { Box, Typography, Chip, Stack } from "@mui/material";
 import type { Category } from '@/types/category';
 import { useCategoryHooks } from '@/hooks/categoryHooks';
+import { useNavigate } from "react-router-dom";
+import { SCREEN_PATH } from "@/constants/screenPaths";
 
 
 export const CategoryBar: React.FC = () => {
+        const navigate = useNavigate();
     const { useGetList: useGetListCategory } = useCategoryHooks();
     const { data: listCategory, } = useGetListCategory(1, '', 50);
+
+        const handleClick = (category: Category) => {
+            navigate(SCREEN_PATH.PRODUCTPAGE, {
+                state: {categoryId: category.id, categoryName: category.name }, // 👈 truyền props qua state
+            });
+        };
     return (
         <Box
             sx={{
@@ -14,7 +23,7 @@ export const CategoryBar: React.FC = () => {
                 borderRadius: "12px",
                 background:
                     "linear-gradient(180deg, #ff6600 0%, #ffcc00 100%) padding-box, #fff border-box",
-                maxWidth: '900px',
+                maxWidth: '1200px',
                 width: '100vw',
             }}
         >
@@ -50,6 +59,7 @@ export const CategoryBar: React.FC = () => {
                     {listCategory?.data?.items.map((item: Category) => (
                         <Stack
                             key={item.id}
+                            onClick={() => handleClick(item)}
                             alignItems="center"
                             justifyContent="center"
                             spacing={0}

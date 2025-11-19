@@ -15,10 +15,15 @@ export const SCREEN_PATH = {
     BRANDMANAGER:'/brand-manager',
     ADDPRODUCT:'/add-product',
     ADDLISTPRODUCT:'/add-list-product',
+    PRODUCTUPDATEGALLERY:'/update-gallery-product',
     ADMIN:'/admin-manager',
     BRANDCATEGORYCREAT:'/brand-category-creat',
     PRODUCTDETAIL:'/product-detail',
-    PRODUCTPAGE:'/product-page'
+    PRODUCTPAGE:'/product-page',
+    ATTRIBUTEADD:'/add-attribute-definition-form',
+    WARRANTYMANAGER:'/warranty-manager',
+    
+    
     
 
 }

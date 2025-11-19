@@ -5,8 +5,6 @@ import type { OptionFilterProduct } from '@/types/product';
 import { useState } from 'react';
 import { brandCategoriesWithFilter, bulkInsertBrandCategorys } from '@/api/apiBrandCategory';
 
-// export const brandHooks = useApi<Brand, CreateBrandDTO, UpdateBrandDTO>('/brands');
-
 export const useBrandCategoryHooks = () => {
   const api = useApi<BrandCategory, CreatBrandCategoryDTO, UpdateBrandCategoryDTO>('/brandcategorys');
   const [loadingFilter, setLoadingFilter] = useState(false);
@@ -32,7 +30,6 @@ export const useBrandCategoryHooks = () => {
     setLoadingFilter(true);
     try {
       const data = await brandCategoriesWithFilter(option);
-      console.log('Quyen getFilteredBrandCategories', data)
       setFilteredBrandCategories(data);
       return data;
     } catch (err: any) {

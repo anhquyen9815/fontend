@@ -82,13 +82,17 @@ export const useAddProductForm = () => {
             alert('Vui lòng điền đủ tên, giá và danh mục.');
             return;
         }
-        handleCreate()
+        // handleCreate()
         console.log('📦 Dữ liệu gửi đi:', formData);
     };
 
 
     const handleCreate = async () => {
-        const response = await createMutation.mutateAsync(initialFormData);
+        if (!formData.name || !formData.price || !formData.categoryId) {
+            alert('Vui lòng điền đủ tên, giá và danh mục.');
+            return;
+        }
+        const response = await createMutation.mutateAsync(formData);
         if (response.error) {
             alert(`Lỗi: ${response.error}`);
         } else {

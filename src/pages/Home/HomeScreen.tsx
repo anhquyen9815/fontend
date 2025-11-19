@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Button, Typography, useTheme, Box, Stack } from '@mui/material';
 import './HomeScreen.scss';
 import { useWindowSize } from '@/hooks/useWindowSize';
@@ -13,6 +13,9 @@ const HomeScreen: React.FC = () => {
     const { useGetList: useGetListCategory } = useCategoryHooks();
     const { data: listProduct, } = useGetList(1, '', 5);
     const { data: listCategory, } = useGetListCategory(1, '', 50);
+      useEffect(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, []);
     return (
         // Sử dụng Box cho container chính (Full Screen)
         <Box
@@ -25,7 +28,7 @@ const HomeScreen: React.FC = () => {
                 alignItems: 'center',
                 display: 'flex',
                 flexDirection: 'column',
-                maxWidth: '900px'
+                maxWidth: '1200px'
                 // bgcolor:'blue'
             }}
         >

@@ -21,11 +21,12 @@ const MainLayout: React.FC = () => {
 
             {/* 2. KHU VỰC NỘI DUNG THAY ĐỔI */}
             <main className="page-content-wrapper">
-                <Box sx={{ width: '100vw',  display: 'flex', justifyContent: 'center', pt: 1,  overflowX: 'hidden', }}> {/* ĐẢM BẢO OUTLET CÓ WIDTH 100% */}
+                {/* <Box sx={{ width: '100vw', display: 'flex', pt: 1, overflowX: 'hidden',  }}>  */}
+                <Box sx={{ width: '100vw', display: 'flex', justifyContent: 'center' }}> 
                     <Outlet />
                 </Box>
             </main>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </div>
     );
 };

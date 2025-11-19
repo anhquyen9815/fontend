@@ -52,7 +52,7 @@ export const createApiWithError = <
     getDetail: async (id: number) =>
       handleRequest<T>(() => apiClient.get(`${baseUrl}/${id}`)),
 
-    create: async (data: CreateDTO) =>
+    create: async (data: CreateDTO) => 
       handleRequest<T>(() => apiClient.post(baseUrl, data)),
 
     update: async (id: number, data: UpdateDTO) =>

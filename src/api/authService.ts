@@ -4,7 +4,6 @@ import {type LoginCredentials } from '@/types/auth';
 
 // Hàm thực hiện HTTP request và trả về dữ liệu User hoặc ném lỗi
 export async function loginApi(credentials: LoginCredentials) {
-  console.log('Quyen BASE_URL', credentials)
   const response = await fetch(`${BASE_URL}${API_ENDPOINTS.LOGIN}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

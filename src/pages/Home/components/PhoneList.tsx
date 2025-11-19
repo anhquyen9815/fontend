@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
     Box,
-    Typography,
     Button,
     Stack,
 } from "@mui/material";
@@ -46,20 +45,16 @@ const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", catego
     // );
 
     const handleClick = () => {
-        // navigate(SCREEN_PATH.PRODUCTDETAIL, {
-        //     state: { product: product }, // 👈 truyền props qua state
-        // });
         navigate(SCREEN_PATH.PRODUCTPAGE, {
-            state: {categoryId, categoryName: title }, // 👈 truyền props qua state
+            state: { categoryId, categoryName: title }, // 👈 truyền props qua state
         });
-
     };
 
     return (
         <Box
             sx={{
                 width: "100vw",
-                maxWidth: '900px',
+                maxWidth: '1200px',
                 px: 1,
                 py: 2,
 
@@ -120,7 +115,6 @@ const PhoneList: React.FC<PhoneListProps> = ({ title = "ĐIỆN THOẠI", catego
                     ))}
                 </Box>
             </Stack>
-
 
             {/* Product Scroll Area */}
             <Box

@@ -14,8 +14,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 // Import dữ liệu từ file riêng (hoặc định nghĩa trực tiếp)
-import { additionalLinks, contactLinks, socialLinks } from '@/data/footerData';
-import { IMAGE_FILES } from '@/constants/imagePaths';
+import {  contactLinks, socialLinks } from '@/data/footerData';
 
 const AppFooter: React.FC = () => {
     return (
@@ -157,8 +156,6 @@ const AppFooter: React.FC = () => {
                     </Stack>
                 </Box>
             </Box>
-
-
 
             {/* COPYRIGHT VÀ THÔNG TIN BẢN QUYỀN */}
             {/* <Box sx={{ borderTop: '1px solid rgba(255,255,255,0.3)', pt: 2, textAlign: 'center' }}>

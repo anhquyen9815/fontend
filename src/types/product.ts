@@ -12,17 +12,11 @@ export interface Product {
   categoryId?: number;
   brandId?: number;
   image?: string;
+  gallery?: string;
   isActive: boolean;
   createdAt?: string;
   brand?:Brand;
   category?:Category
-}
-
-export interface ProductListResponse {
-  items: Product[];
-  page: number;
-  pageSize: number;
-  totalCount: number;
 }
 
 export interface CreateProductDTO {
@@ -35,6 +29,7 @@ export interface CreateProductDTO {
   categoryId?: number;
   brandId?: number;
   image?: string;
+  gallery?: string;
   isActive?: boolean;
   createdAt?: string;
 }
@@ -53,6 +48,13 @@ export interface UpdateProductDTO {
   createdAt?: string;
 }
 
+export interface ProductListResponse {
+  items: Product[];
+  page: number;
+  pageSize: number;
+  totalCount: number;
+}
+
 export type BulkInsertResult = {
   message?: string;
   insertedCount: number;
@@ -61,6 +63,13 @@ export type BulkInsertResult = {
   skipped: Array<{ Code?: string; Name?: string; reason?: string }>;
 };
 
+export type BulkUpdateGalleryResult = {
+  message?: string;
+  updatedCount: number;
+  skippedCount: number;
+  inserted: any; // hoặc CreateProductDTO[]
+  skipped: any;
+};
 export interface DataExcel {
   nameSheet: string,
   data: CreateProductDTO[],
@@ -75,7 +84,9 @@ export interface OptionFilterProduct {
   keySearch?: string,
   sortBy?: "DiscountPrice" | "DiscountPercent"; // Enum SortField trong backend
   sortOrder?: "Asc" | "Desc"; 
-
+  attributeFilters?: string,
+  minPrice?:number;
+  maxPrice?:number
 }
 
 export interface Response {
@@ -83,6 +94,15 @@ export interface Response {
   page: number;
   size: number;
   items: Product[]
+}
+
+export interface UpdateGalleryDTO {
+  idProduct: number;
+  codeProduct: string;
+  gallery: string;
+  image?: string;
+  listGallery?: string[]
+
 }
 
 

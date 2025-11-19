@@ -5,6 +5,7 @@ import { useCategoryHooks } from '@/hooks/categoryHooks';
 import type { CreateProductDTO, DataExcel } from '@/types/product';
 import Papa from 'papaparse';
 import * as XLSX from "xlsx";
+import { toSlug } from '@/utils/convert';
 
 export interface ConvertAddress {
     wardOldId: number;
@@ -79,12 +80,14 @@ export const useProductAddNewList = () => {
                     .map((r) => ({
                         code: r.Code?.toString().trim(),
                         name: r.Name?.toString().trim(),
+                        slug: toSlug(r.Name?.toString().trim()),
                         price: Number(r.Price) || 0,
                         discountPrice: Number(r.DiscountPrice) || 0,
                         brandId: Number(r.BrandId) || 0,
                         categoryId: Number(r.CategoryId) || 0,
                         description: r.Description?.toString().trim() || "",
                         image: r.Image?.toString() || "",
+                        gallery:  r.Gallery?.toString() || "",
                     }));
                 listDataTemp = [...listDataTemp, {
                     id: index, nameSheet: sheetName, data: products
@@ -129,7 +132,6 @@ export const useProductAddNewList = () => {
             let nameSheet = sheetNames[0]
             const worksheet = workbook.Sheets[nameSheet];
             const jsonData = XLSX.utils.sheet_to_json<any>(worksheet, { defval: "" });
-            console.log('Quyen jsonData', jsonData)
             const address: ConvertAddress[] = jsonData
                 .map((item) => ({
                     wardOldId: parseIdAndName(item.xaold).id,
@@ -141,8 +143,6 @@ export const useProductAddNewList = () => {
                     villageOldName: parseIdAndName(item.thonold).name,
                     villageNewName: parseIdAndName(item.thonnew).name,
                 }))
-            console.log('Quyen address', JSON.stringify(address))
-
 
         };
 
@@ -162,12 +162,9 @@ export const useProductAddNewList = () => {
         console.log('Quyen productList', productList)
         try {
             const res = await importProducts(productList);
-            console.log("Quyen importProducts res:", res);
-
             alert(`Đã thêm ${res.data?.inserted} sản phẩm mới`);
         } catch (err: any) {
             alert('Quyen Import thất bại',);
-            console.log('Quyen err', err)
         }
     };
     useEffect(() => {

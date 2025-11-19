@@ -9,8 +9,8 @@
 
 // useProduct.ts
 import { useApi } from '@/api/useApi';
-import { bulkInsertProducts, productsWithFilter } from '@/api/apiProduct';
-import type { Product, CreateProductDTO, UpdateProductDTO, OptionFilterProduct, Response } from '@/types/product';
+import { bulkInsertProducts, productsWithFilter, bulkUpdateGallery } from '@/api/apiProduct';
+import type { Product, CreateProductDTO, UpdateProductDTO, OptionFilterProduct, Response, UpdateGalleryDTO } from '@/types/product';
 import { useState } from 'react';
 
 export const useProductHooks = () => {
@@ -32,6 +32,22 @@ export const useProductHooks = () => {
       setLoadingBulk(false);
     }
   };
+
+    // 🧩 Thêm danh sách sản phẩm mới (bỏ qua mã trùng)
+  const updateGalleryProducts = async (list: UpdateGalleryDTO[]) => {
+    setLoadingBulk(true);
+    try {
+      const result = await bulkUpdateGallery(list);
+      return { success: true, data: result };
+    } catch (err: any) {
+      console.error('Update ảnh lỗi:', err);
+      return { success: false, error: err.message || 'Import ảnh bại' };
+    } finally {
+      setLoadingBulk(false);
+    }
+  };
+
+  
 
   // 🧩 Lấy danh sách sản phẩm với filter
   const getFilteredProducts = async (option: OptionFilterProduct) => {
@@ -55,7 +71,7 @@ export const useProductHooks = () => {
       }
       return data;
     } catch (err: any) {
-      console.error('Lấy sản phẩm với filter lỗi:', err);
+      console.error(' Lấy sản phẩm với filter lỗi:', err);
       return [];
     } finally {
       setLoadingFilter(false);
@@ -71,5 +87,6 @@ export const useProductHooks = () => {
     getFilteredProducts, // hàm lấy danh sách theo filter
     filteredProducts, // dữ liệu filter
     loadingFilter, // trạng thái loading filter
+    updateGalleryProducts
   };
 };

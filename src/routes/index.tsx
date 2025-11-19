@@ -5,7 +5,7 @@ import MainLayout from '../components/layout/MainLayout/MainLayout';
 import HomeScreen from '@/pages/Home/HomeScreen';
 import { SCREEN_PATH } from '@/constants/screenPaths';
 import LoginPageScreen from '@/pages/Auth/LoginPage';
-import { ProductManager } from '@/pages/Product/ProductManager';
+import { ProductManager } from '@/pages/Admin/Product/ProductManager';
 import { BrandManager } from '@/pages/Brand/BrandManager';
 import AddProductForm from '@/pages/ProductAddNew/AddProductForm';
 import { AdminScreen } from '@/pages/Admin/AdminScreen';
@@ -13,6 +13,9 @@ import { ProductAddNewListScreen } from '@/pages/ProductAddNewList/ProductAddNew
 import BrandCategoryCreate from '@/pages/BrandCategoryCreate/BrandCategoryCreate';
 import ProductDetail from '@/pages/ProductDetail/ProductDetail';
 import ProductPage from '@/pages/ProductPage/ProductPage';
+import AddAttributeDefinitionForm from '@/pages/AttributeDefinition/AddAttributeDefinitionForm';
+import { ProductUpdateGalleryScreen } from '@/pages/ProductUpdateGallery/ProductUpdateGallery';
+import { WarrantyManagerScreen } from '@/pages/WarrantyManager/WarrantyManager';
 
 const AppRoutes: React.FC = () => (
     <Routes>
@@ -29,13 +32,16 @@ const AppRoutes: React.FC = () => (
             <Route path="/:categorySlug/:productSlug" element={<ProductDetail />} />
             //
             <Route path={SCREEN_PATH.PRODUCTPAGE} element={<ProductPage />} />
+            <Route path={SCREEN_PATH.ATTRIBUTEADD} element={<AddAttributeDefinitionForm />} />
 
+            <Route path={SCREEN_PATH.ADDLISTPRODUCT} element={<ProductAddNewListScreen />} />
+            <Route path={SCREEN_PATH.PRODUCTUPDATEGALLERY} element={<ProductUpdateGalleryScreen />} />
+            <Route path={SCREEN_PATH.BRANDCATEGORYCREAT} element={<BrandCategoryCreate />} />
+            <Route path={SCREEN_PATH.WARRANTYMANAGER} element={<WarrantyManagerScreen />} />
 
         </Route>
 
-        <Route path={SCREEN_PATH.ADDLISTPRODUCT} element={<ProductAddNewListScreen />} />
         <Route path={SCREEN_PATH.LOGIN} element={<LoginPageScreen />} />
-        <Route path={SCREEN_PATH.BRANDCATEGORYCREAT} element={<BrandCategoryCreate />} />
 
 
 

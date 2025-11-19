@@ -33,7 +33,7 @@ const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ items }) => {
     <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-start", mb: 2 }}>
       <Breadcrumbs
         separator={
-          <NavigateNextIcon fontSize="small" sx={{ color: "text.secondary" }} />
+          <NavigateNextIcon fontSize="small" sx={{ color: "text.secondary"}} />
         }
         aria-label="breadcrumb"
         sx={{
@@ -50,20 +50,9 @@ const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ items }) => {
       >
         {items.map((item, index) =>
           item.href && index !== items.length - 1 ? (
-            // <Link href={item.href}
-            //   onClick={() => handleClick(item)}
-            // >
-            //   {item.label}
-            // </Link>
-            <button onClick={() => handleClick(item)}>
+            <button onClick={() => handleClick(item)} style={{margin: 0, padding: 8}} >
              {item.label}
             </button>
-            // <Typography
-            //   onClick={() => handleClick(item)}
-            //   key={index}
-            //   color="text.primary" >
-            //   {item.label}
-            // </Typography>
           ) : (
             <Typography key={index} color="text.primary" fontWeight={600}>
               {item.label}

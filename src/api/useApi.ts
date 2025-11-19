@@ -13,7 +13,7 @@ export const useApi = <
 
   return {
     // ---------------- List với pagination ----------------
-    useGetList: (page = 1, search = '', pageSize = 5,) =>
+    useGetList: (page = 1, search = '', pageSize = 10,) =>
       useQuery<{ data: PaginatedResponse<T> | null; error: string | null }>({
         queryKey: [baseUrl, page, search, pageSize],
         queryFn: () => api.getList(page, search, pageSize),

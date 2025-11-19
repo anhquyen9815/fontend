@@ -67,10 +67,7 @@ export default function BrandCategoryCreate() {
                 brandId,
                 categoryId: selectedCategory,
             }));
-            console.log('Quyen payload', payload)
             const res = await importBrandCategories(payload);
-            console.log("Quyen importProducts res:", res);
-
             alert(`Đã thêm ${res.data?.inserted} sản phẩm mới`);
 
             setSelectedCategory('');

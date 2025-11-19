@@ -17,7 +17,9 @@ const AddProductForm: React.FC = () => {
     } = useAddProductForm();
 
     return (
-        <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 1200, margin: '40px auto', p: { xs: 2, md: 4 } }}>
+        <Box component="form"
+            // onSubmit={handleSubmit} 
+            sx={{ maxWidth: 1200, margin: '40px auto', p: { xs: 2, md: 4 } }}>
             <Typography variant="h4" fontWeight="bold" sx={{ mb: 4 }}>
                 Thêm Sản phẩm Mới
             </Typography>

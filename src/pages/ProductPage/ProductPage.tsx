@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Typography, useTheme, Box, Stack } from '@mui/material';
-import { useWindowSize } from '@/hooks/useWindowSize';
+import { Button, Box, } from '@mui/material';
 import { useProductHooks } from '@/hooks/productHooks';
-import { useCategoryHooks } from '@/hooks/categoryHooks';
-import ProductFilterHeader from './components/ProductFilterHeader';
 import BreadcrumbNav from '@/components/common/BreadcrumbNav';
 import { useLocation } from "react-router-dom";
 import type { OptionFilterProduct, Product } from '@/types/product';
 import ProductItem from '@/components/common/ProductItem';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
-
+import FilterBySort from './components/FilterBySort';
+import FilterByCategory from './components/FilterByCategory';
+import FilterByAttribute from './components/FilterByAttribute';
 
 const ProductPage: React.FC = () => {
     const location = useLocation();
     const { categoryId, categoryName } = location.state as { categoryId: number, categoryName: string } || {};
-    const { getFilteredProducts, filteredProducts, loadingFilter } = useProductHooks();
-
-    const [page, setPage] = useState<number>(1);
-    const [optionFilter, setOptionFilter] = useState<OptionFilterProduct>({ page, size: 10, categoryId });
+    const { getFilteredProducts, filteredProducts } = useProductHooks();
+    const [page, setPage] = useState<number>(1)
+    const [optionFilter, setOptionFilter] = useState<OptionFilterProduct>({ page, size: 20, categoryId });
     const totalProduct = filteredProducts?.total || 0
     const lengthProduct = filteredProducts?.items.length || 0
     const items = [
@@ -29,6 +26,16 @@ const ProductPage: React.FC = () => {
     useEffect(() => {
         getFilteredProducts(optionFilter)
     }, [optionFilter])
+
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
+    const handleFilter = (option: OptionFilterProduct) => {
+        setPage(option.page || 1)
+        setOptionFilter(option)
+    }
 
     return (
         // Sử dụng Box cho container chính (Full Screen)
@@ -48,7 +55,9 @@ const ProductPage: React.FC = () => {
         >
 
             <BreadcrumbNav items={items} />
-            <ProductFilterHeader categoryId={categoryId} optionFilter={optionFilter} setOptionFilter={setOptionFilter} />
+            <FilterByCategory categoryId={categoryId} optionFilter={optionFilter} handleFilter={handleFilter} />
+            <FilterByAttribute categoryId={categoryId} optionFilter={optionFilter} handleFilter={handleFilter} />
+            <FilterBySort optionFilter={optionFilter} handleFilter={handleFilter} />
             <Box
                 sx={{
                     display: "flex",
@@ -61,13 +70,17 @@ const ProductPage: React.FC = () => {
                     pl: '10px'
                 }}
             >
-                {filteredProducts?.items.map((p: Product) => (
-                    <ProductItem product={p} />
-                ))}
-                {totalProduct == lengthProduct
-                    ? null
-                    : <Button
-                        onClick={() => setOptionFilter({ ...optionFilter, page: page + 1 })}
+                {filteredProducts?.items
+                    .map((p: Product) => (
+                        <ProductItem product={p} />
+                    ))}
+                {totalProduct > lengthProduct
+                    ? <Button
+                        onClick={() => {
+                            const newPage = page + 1
+                            setPage(newPage)
+                            setOptionFilter({ ...optionFilter, page: newPage })
+                        }}
                         variant="outlined"
                         endIcon={<KeyboardArrowDownIcon />}
                         sx={{
@@ -92,7 +105,8 @@ const ProductPage: React.FC = () => {
                         }}
                     >
                         Xem thêm {totalProduct - lengthProduct} sản phẩm
-                    </Button>}
+                    </Button>
+                    : null}
             </Box>
 
         </Box>

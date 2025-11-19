@@ -24,6 +24,11 @@ export const AdminScreen: React.FC = () => {
             name: 'Thêm mới nhiều sản phẩm',
             path: SCREEN_PATH.ADDLISTPRODUCT,
         },
+         {
+            name: 'Cập nhật DS ảnh sản phẩm',
+            path: SCREEN_PATH.PRODUCTUPDATEGALLERY,
+        },
+        
         {
             name: 'Thương hiệu',
             path: SCREEN_PATH.BRANDMANAGER,
@@ -32,10 +37,18 @@ export const AdminScreen: React.FC = () => {
             name: 'Brand x Category',
             path: SCREEN_PATH.BRANDCATEGORYCREAT,
         },
+        {
+            name: 'Thêm mới thuộc tính',
+            path: SCREEN_PATH.ATTRIBUTEADD,
+        },
+         {
+            name: 'Bảo hành',
+            path: SCREEN_PATH.WARRANTYMANAGER,
+        },
 
     ]
     return (
-        <Box sx={{ pl: 1, pr: 1, pt: 2, maxWidth: 900,   }} >
+        <Box sx={{ pl: 1, pr: 1, pt: 2, maxWidth: 1200, mb: 2   }} >
             <Typography variant="h5" mb={2}>Chức năng</Typography>
 
             {/* List */}
